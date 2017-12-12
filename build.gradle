@@ -25,3 +25,18 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+
+    version_support_appcompat = '26.1.0'
+
+    version_rxjava = '2.1.7'
+    version_okhttp3 = '3.9.1'
+    version_retrofit = '2.3.0'
+
+    targetSdkVersion = 26
+    compileSdkVersion = 26
+    minSdkVersion = 19
+    versionCode = 1
+    versionName = "1.0"
+}
