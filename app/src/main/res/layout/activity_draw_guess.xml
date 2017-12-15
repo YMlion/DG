@@ -78,6 +78,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:drawablePadding="5dp"
         android:drawableRight="@drawable/new_set"
+        android:padding="3dp"
         android:text="@string/settings"
         android:textColor="@android:color/white"
         android:textSize="14sp"
