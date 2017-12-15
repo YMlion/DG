@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
               android:background="@android:color/transparent"
               android:orientation="vertical">
 
@@ -41,7 +41,7 @@
             android:background="@color/line_grey"/>
 
         <RelativeLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10.0dp"
             android:paddingTop="10.0dp">
@@ -65,13 +65,13 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="1.0px"
             android:background="@color/line_grey"/>
 
         <RelativeLayout
             android:id="@+id/rl_music"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
@@ -101,7 +101,7 @@
 
             <!--<com.wodi.common.widget.Slider
                 android:id="@id/slider"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5.0dp"
                 android:layout_toLeftOf="@id/music_indicator"
@@ -111,17 +111,17 @@
 
         <LinearLayout
             android:id="@+id/sound_layout"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <View
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="1.0px"
                 android:background="#ffeeeeee"/>
 
             <RelativeLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10.0dp"
                 android:paddingTop="10.0dp">
@@ -148,13 +148,13 @@
         </LinearLayout>
 
         <View
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="1.0px"
             android:background="#ffeeeeee"/>
 
         <RelativeLayout
             android:id="@+id/rl_rule"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10.0dp"
             android:paddingTop="10.0dp">
@@ -177,17 +177,17 @@
 
         <LinearLayout
             android:id="@+id/vip_room_info"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <View
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="1.0px"
                 android:background="#ffeeeeee"/>
 
             <RelativeLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10.0dp"
                 android:paddingTop="10.0dp">
@@ -211,17 +211,17 @@
 
         <LinearLayout
             android:id="@+id/follow_room"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <View
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="1.0px"
                 android:background="#ffeeeeee"/>
 
             <RelativeLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10.0dp"
                 android:paddingTop="10.0dp">
@@ -249,19 +249,19 @@
 
         <LinearLayout
             android:id="@+id/quit_layout"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="gone">
 
             <View
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="1.0px"
                 android:background="#ffeeeeee"/>
 
             <TextView
                 android:id="@+id/btn_quit"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5.0dp"
                 android:layout_marginLeft="25.0dp"

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/user_avatar"
+        android:id="@+id/iv_user_avatar"
         android:layout_width="90.0dp"
         android:layout_height="90.0dp"
         android:layout_centerHorizontal="true"
@@ -13,25 +12,22 @@
         android:scaleType="centerCrop"/>
 
     <ImageView
-        android:id="@+id/user_status"
+        android:id="@+id/iv_user_status"
         android:layout_width="28.0dp"
         android:layout_height="28.0dp"
-        android:layout_alignRight="@id/user_avatar"
+        android:layout_alignRight="@id/iv_user_avatar"
         android:scaleType="fitXY"
-        android:src="@drawable/new_ready_mark"
-        android:visibility="visible"/>
+        android:src="@drawable/new_ready_mark"/>
 
     <TextView
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_user_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/user_avatar"
-        android:layout_alignRight="@id/user_avatar"
-        android:layout_below="@id/user_avatar"
+        android:layout_below="@id/iv_user_avatar"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="2.0dp"
         android:gravity="center"
         android:singleLine="true"
         android:textColor="@color/white"
-        android:textSize="14.0sp"
-        tools:text="张三"/>
+        android:textSize="14.0sp"/>
 </RelativeLayout>
