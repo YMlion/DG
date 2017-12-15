@@ -1,4 +1,4 @@
-package com.duoyi.drawguess.ui;
+package com.duoyi.drawguess.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

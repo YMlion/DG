@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">你画我猜</string>
+    <string name="settings">设置</string>
+    <string name="time">时间</string>
+    <string name="str_music">音乐</string>
+    <string name="str_sound">音效</string>
+    <string name="str_vip_room_info">包间信息</string>
+    <string name="str_follow_room">关注包间</string>
 </resources>

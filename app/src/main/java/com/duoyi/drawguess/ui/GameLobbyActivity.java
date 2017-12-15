@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.duoyi.drawguess.R;
+import com.duoyi.drawguess.base.BaseActivity;
 
 /**
  * 游戏大厅界面

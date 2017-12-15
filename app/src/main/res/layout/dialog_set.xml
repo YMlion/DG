@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:toggle="http://schemas.android.com/apk/res-auto"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@android:color/transparent"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="24.0dip"
+        android:layout_height="24.0dip"
+        android:layout_gravity="right|end"
+        android:layout_marginBottom="10.0dip"
+        android:layout_marginRight="5.0dip"
+        android:scaleType="centerInside"
+        android:src="@drawable/new_set_cancel"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30.0dip"
+        android:layout_marginRight="30.0dip"
+        android:background="@drawable/dialog_profile_share_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_set_bg"
+            android:gravity="center"
+            android:paddingBottom="10.0dip"
+            android:paddingTop="10.0dip"
+            android:textColor="@color/color_313131"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.0px"
+            android:background="@color/line_grey"/>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10.0dip"
+            android:paddingTop="10.0dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/new_set_coin"
+                android:text="松果"
+                style="@style/RoomInfoDialogTextStyle"/>
+
+            <TextView
+                android:id="@+id/tv_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.0dip"
+                android:textColor="@color/color_313131"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:background="@color/line_grey"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_music"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:drawableLeft="@drawable/setting_music"
+                android:text="@string/str_music"
+                style="@style/RoomInfoDialogTextStyle"/>
+
+            <TextView
+                android:id="@+id/music_indicator"
+                android:layout_width="32.0dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/quit_room_bg"
+                android:gravity="center"
+                android:paddingBottom="2.0dip"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip"
+                android:paddingTop="2.0dip"
+                android:textColor="@color/color_ffa411"
+                android:textSize="12sp"/>
+
+            <com.wodi.common.widget.Slider
+                android:id="@id/slider"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0dip"
+                android:layout_toLeftOf="@id/music_indicator"
+                android:layout_toRightOf="@id/text_music"
+                android:background="@color/color_ffa411"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/sound_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="#ffeeeeee"/>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <TextView
+                    android:id="@+id/sound_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/room_setting_sound_icon"
+                    android:text="@string/str_sound"
+                    style="@style/RoomInfoDialogTextStyle"/>
+
+                <com.wodi.who.widget.ToggleButton
+                    android:id="@id/sound"
+                    android:layout_width="54.0dip"
+                    android:layout_height="30.0dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10.0dip"
+                    toggle:borderWidth="0.70000005dip"
+                    toggle:offColor="#fffdfdfd"
+                    toggle:onColor="#ffffa411"
+                    toggle:spotColor="#ffffffff"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:background="#ffeeeeee"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_rule"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10.0dip"
+            android:paddingTop="10.0dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/game_set_rule_bg_selector"
+                android:text="游戏规则"
+                style="@style/RoomInfoDialogTextStyle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/new_set_right_arrow"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/vip_room_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="#ffeeeeee"/>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/room_infobg_selector"
+                    android:text="@string/str_vip_room_info"
+                    style="@style/RoomInfoDialogTextStyle"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@drawable/new_set_right_arrow"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/follow_room"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="#ffeeeeee"/>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <TextView
+                    android:id="@+id/follow_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/room_setting_follow_gray_icon"
+                    android:text="@string/str_follow_room"
+                    style="@style/RoomInfoDialogTextStyle"/>
+
+                <com.wodi.who.widget.ToggleButton
+                    android:id="@id/follow"
+                    android:layout_width="54.0dip"
+                    android:layout_height="30.0dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10.0dip"
+                    toggle:borderWidth="0.70000005dip"
+                    toggle:offColor="#fffdfdfd"
+                    toggle:onColor="#ffffa411"
+                    toggle:spotColor="#ffffffff"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/quit_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="#ffeeeeee"/>
+
+            <TextView
+                android:id="@+id/btn_quit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5.0dip"
+                android:layout_marginLeft="25.0dip"
+                android:layout_marginRight="25.0dip"
+                android:layout_marginTop="5.0dip"
+                android:background="@drawable/quit_room_bg"
+                android:gravity="center"
+                android:paddingBottom="5.0dip"
+                android:paddingTop="5.0dip"
+                android:text="退出房间"
+                android:textColor="@color/color_ffa411"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
