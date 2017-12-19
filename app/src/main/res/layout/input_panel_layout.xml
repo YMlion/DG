@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="#ffeceaea"
+              android:orientation="vertical">
+
+    <include layout="@layout/spiltview_horizontal"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/input_panel"
+            android:layout_width="fill_parent"
+            android:layout_height="44.0dip"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/change_input_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:paddingLeft="12.0dip"
+                android:paddingRight="12.0dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/chat_setmode_btn"/>
+
+            <FrameLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0">
+
+                <EditText
+                    android:id="@+id/edit_chat"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="7.0dip"
+                    android:layout_marginTop="7.0dip"
+                    android:background="@drawable/keyboard_input_bg"
+                    android:maxLines="3"
+                    android:minHeight="35.0dip"
+                    android:paddingLeft="12.0dip"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:id="@+id/record_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="7.0dip"
+                    android:layout_marginTop="7.0dip"
+                    android:background="@drawable/btn_voice_normal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/voice_record_btn"
+                        android:textColor="@color/color_666666"
+                        android:textSize="15.0sp"/>
+                </LinearLayout>
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/open_smiley"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="8.0dip"
+                android:paddingLeft="12.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="8.0dip"
+                android:src="@drawable/keyboard_emoji"/>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/send"
+                    android:layout_width="48.0dip"
+                    android:layout_height="26.0dip"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="4.0dip"
+                    android:background="@drawable/btn_send_bg"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="5dp"
+                    android:tag="text/plain"
+                    android:text="@string/send"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/open_plugins"
+                    android:layout_width="42.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="4.0dip"
+                    android:src="@drawable/chat_add"/>
+            </FrameLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/cover"
+            android:layout_width="fill_parent"
+            android:layout_height="44.0dip"
+            android:background="@color/black_tranparent_80"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/cover_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"/>
+
+            <ImageView
+                android:id="@+id/cover_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/painting_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/cover_open_plug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/painting_plug"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

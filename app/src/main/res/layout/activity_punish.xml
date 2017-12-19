@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/game_bg_wodi">
+
+        <FrameLayout
+            android:id="@+id/send_panel_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black">
+
+            <FrameLayout
+                android:id="@+id/send_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <FrameLayout
+                    android:id="@+id/operation_panel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <FrameLayout
+                    android:id="@+id/extra_panel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
+        </FrameLayout>
+
+        <include
+            layout="@layout/title_layout_game"
+            android:id="@+id/title_layout"/>
+
+        <TextView
+            android:id="@+id/time_limit"
+            android:layout_width="30.0dip"
+            android:layout_height="28.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="50.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@drawable/clock"
+            android:gravity="center"
+            android:textColor="#ff222222"
+            android:textSize="15.0sp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/record_popup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/send_panel_layout"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <include
+                layout="@layout/record_pop_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/send_panel"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>

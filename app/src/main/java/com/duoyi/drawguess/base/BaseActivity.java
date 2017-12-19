@@ -1,9 +1,11 @@
 package com.duoyi.drawguess.base;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import com.duoyi.drawguess.util.DLog;
 
 /**
@@ -98,5 +100,18 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     @Override protected void onDestroy() {
         super.onDestroy();
         DLog.d("activity onDestroy");
+    }
+
+    /**
+     * 设置背景透明度渐变动画
+     */
+    public void setBackgroundAlpha(float from, float to, int duration) {
+        final WindowManager.LayoutParams lp = getWindow().getAttributes();
+        ValueAnimator animator = ValueAnimator.ofFloat(from, to).setDuration(duration);
+        animator.addUpdateListener(animation -> {
+            lp.alpha = (Float) animation.getAnimatedValue();
+            getWindow().setAttributes(lp);
+        });
+        animator.start();
     }
 }

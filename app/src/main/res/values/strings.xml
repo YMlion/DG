@@ -9,4 +9,18 @@
     <string name="button_ready">准备</string>
     <string name="exit">退出</string>
     <string name="invite">邀请</string>
+    <string name="paint_change">换一批</string>
+    <string name="paint_change_world">换一批(%1$d松子)</string>
+    <string name="paint_chioce_word_change">（%1$s）</string>
+    <string name="paint_chioce_word_title">选词绘画</string>
+    <string name="paint_quite_tips">"您游戏中退出会损失大量的松子是否确认退出"</string>
+    <string name="paint_yes">是</string>
+    <string name="paint_no">否</string>
+    <string name="voice_record_btn">按住说话</string>
+    <string name="voice_record_btn_cancel">松开取消</string>
+    <string name="voice_recording_cancel_tip">松开手指，取消发送</string>
+    <string name="voice_recording_tip">手指上滑，取消发送</string>
+    <string name="voice_recording_too_long">录音时间超长！</string>
+    <string name="voice_recording_too_short">录音时间太短</string>
+    <string name="send">发送</string>
 </resources>

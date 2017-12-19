@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/record_volume"
+        android:layout_width="151.0dip"
+        android:layout_height="151.0dip"
+        android:background="@drawable/bg_voice_record">
+
+        <TextView
+            android:id="@+id/volume_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5.0dip"
+            android:text="@string/voice_recording_tip"
+            android:textColor="#ffededed"
+            android:textSize="12.0sp"/>
+
+        <ImageView
+            android:id="@+id/volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/volume_tips"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="23.0dip"
+            android:src="@drawable/voice_volume_level"/>
+
+        <TextView
+            android:id="@+id/txt_count_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="72.0sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/record_cancel"
+        android:layout_width="151.0dip"
+        android:layout_height="151.0dip"
+        android:background="@drawable/bg_voice_record">
+
+        <TextView
+            android:id="@+id/cancel_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5.0dip"
+            android:background="@drawable/bg_voice_record_tips"
+            android:text="@string/voice_recording_cancel_tip"
+            android:textColor="#ffededed"
+            android:textSize="12.0dip"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/cancel_tips"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20.0dip"
+            android:src="@drawable/ic_voice_record_cancel"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/record_warn"
+        android:layout_width="151.0dip"
+        android:layout_height="151.0dip"
+        android:background="@drawable/bg_voice_record"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/warn_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5.0dip"
+            android:text="@string/voice_recording_too_short"
+            android:textColor="#ffededed"
+            android:textSize="12.0sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/warn_tips"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_voice_record_warn"/>
+    </RelativeLayout>
+</FrameLayout>

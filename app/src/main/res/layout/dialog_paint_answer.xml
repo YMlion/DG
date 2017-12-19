@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/ll_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15.0dip"
+            android:background="@drawable/new_paint_guess_bg"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:id="@+id/tv_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="85.0dip"
+                android:text="3个字"
+                android:textColor="#ffffffff"
+                android:textSize="15.0dip"/>
+
+            <EditText
+                android:id="@+id/et"
+                android:layout_width="185.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/new_paint_input_dialog_edit_bg"
+                android:gravity="center"
+                android:textColor="#ff666666"
+                android:textSize="15.0dip"/>
+
+            <Button
+                android:id="@+id/ib_ok"
+                android:layout_width="105.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15.0dip"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/new_paint_input_dialog_okbtn"
+                android:text="确定"
+                android:textColor="#ffffffff"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="20.0dip"
+            android:layout_height="20.0dip"
+            android:layout_alignRight="@id/ll_bg"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/new_liar_dialog_x"/>
+    </RelativeLayout>
+</RelativeLayout>

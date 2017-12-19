@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff1f0cf">
+
+    <View
+        android:id="@+id/pv"
+        android:layout_width="match_parent"
+        android:layout_height="360.0dip"
+        android:layout_marginTop="50.0dip"
+        android:background="@color/white"/>
+
+    <ImageView
+        android:id="@+id/tv_flower"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/pv"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5.0dip"
+        android:layout_marginRight="5.0dip"
+        android:src="@drawable/new_paint_flower"/>
+
+    <ImageView
+        android:id="@+id/tv_egg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@id/tv_flower"
+        android:layout_marginRight="8.0dip"
+        android:layout_toLeftOf="@id/tv_flower"
+        android:gravity="bottom|center"
+        android:src="@drawable/new_paint_egg"
+        android:text="30金"
+        android:textColor="@color/white"
+        android:textSize="8.0dip"/>
+
+    <ImageView
+        android:id="@+id/tv_save"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/pv"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="55.0dip"
+        android:layout_marginRight="5.0dip"
+        android:src="@drawable/new_paint_save_button"/>
+
+    <ImageView
+        android:id="@+id/tv_share"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/pv"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="105.0dip"
+        android:layout_marginRight="5.0dip"
+        android:src="@drawable/new_paint_share_button"/>
+
+    <Button
+        android:id="@+id/btn_answer"
+        android:layout_width="100.0dip"
+        android:layout_height="30.0dip"
+        android:layout_alignBottom="@id/pv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5.0dip"
+        android:background="@drawable/btn_paint_answer_bg"
+        android:text="抢答"
+        android:textColor="#ffffffff"
+        android:textSize="18.0dip"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/ll_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pv"
+        android:layout_marginRight="50.0dip">
+
+        <RelativeLayout
+            android:id="@+id/rl_user1"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:layout_weight="1.0"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tv_add_score1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_paint_add_score_less"
+                android:gravity="right"
+                android:paddingRight="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="+5"
+                android:textColor="#ffffffff"
+                android:textSize="9.0dip"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/siv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_add_score1"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/new_paint_ing_bg"
+                android:padding="2.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/new_def_head_icon"/>
+
+            <TextView
+                android:id="@+id/tv_score1"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignBottom="@id/siv1"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/new_paint_score_bg"
+                android:gravity="center"
+                android:text="\ 0"
+                android:textColor="#ffffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_name1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/siv1"
+                android:layout_marginRight="8.0dip"
+                android:layout_marginTop="2dp"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="perfect康"
+                android:textColor="#ff666666"
+                android:textSize="9.0dip"/>
+
+            <ImageView
+                android:id="@+id/iv_status1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5.0dip"
+                android:src="@drawable/paint_status1"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_user2"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="1.0"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tv_add_score2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_paint_add_score_less"
+                android:gravity="right"
+                android:paddingRight="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="+5"
+                android:textColor="#ffffffff"
+                android:textSize="9.0sp"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/siv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_add_score2"
+                android:layout_marginRight="10dp"
+                android:padding="2.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/new_def_head_icon"/>
+
+            <TextView
+                android:id="@+id/tv_score2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignBottom="@id/siv2"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/new_paint_score_bg"
+                android:gravity="center"
+                android:text="\ 0"
+                android:textColor="#ffffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_name2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/siv2"
+                android:layout_marginRight="8.0dip"
+                android:layout_marginTop="2dp"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="perfect康"
+                android:textColor="#ff666666"
+                android:textSize="9.0dip"/>
+
+            <ImageView
+                android:id="@+id/iv_status2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5.0dip"
+                android:src="@drawable/paint_status1"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_user3"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="1.0"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tv_add_score3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_paint_add_score_less"
+                android:gravity="right"
+                android:paddingRight="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="+5"
+                android:textColor="#ffffffff"
+                android:textSize="9.0sp"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/siv3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_add_score3"
+                android:layout_marginRight="10dp"
+                android:padding="2.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/new_def_head_icon"/>
+
+            <TextView
+                android:id="@+id/tv_score3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignBottom="@id/siv3"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/new_paint_score_bg"
+                android:gravity="center"
+                android:text="\ 0"
+                android:textColor="#ffffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_name3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/siv3"
+                android:layout_marginRight="8.0dip"
+                android:layout_marginTop="2dp"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="perfect康"
+                android:textColor="#ff666666"
+                android:textSize="9.0dip"/>
+
+            <ImageView
+                android:id="@+id/iv_status3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5.0dip"
+                android:src="@drawable/paint_status1"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_user4"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="1.0"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tv_add_score4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_paint_add_score_less"
+                android:gravity="right"
+                android:paddingRight="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="+5"
+                android:textColor="#ffffffff"
+                android:textSize="9.0sp"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/siv4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_add_score4"
+                android:layout_marginRight="10dp"
+                android:padding="2.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/new_def_head_icon"/>
+
+            <TextView
+                android:id="@+id/tv_score4"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignBottom="@id/siv4"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/new_paint_score_bg"
+                android:gravity="center"
+                android:text="\ 0"
+                android:textColor="#ffffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_name4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/siv4"
+                android:layout_marginRight="8.0dip"
+                android:layout_marginTop="2dp"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="perfect康"
+                android:textColor="#ff666666"
+                android:textSize="9.0dip"/>
+
+            <ImageView
+                android:id="@+id/iv_status4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5.0dip"
+                android:src="@drawable/paint_status1"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_user5"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="1.0"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tv_add_score5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_paint_add_score_less"
+                android:gravity="right"
+                android:paddingRight="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="+5"
+                android:textColor="#ffffffff"
+                android:textSize="9.0sp"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/siv5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_add_score5"
+                android:layout_marginRight="10dp"
+                android:padding="2.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/new_def_head_icon"/>
+
+            <TextView
+                android:id="@+id/tv_score5"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignBottom="@id/siv5"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/new_paint_score_bg"
+                android:gravity="center"
+                android:text="\ 0"
+                android:textColor="#ffffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_name5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/siv5"
+                android:layout_marginRight="8.0dip"
+                android:layout_marginTop="2dp"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="perfect康"
+                android:textColor="#ff666666"
+                android:textSize="9.0dip"/>
+
+            <ImageView
+                android:id="@+id/iv_status5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5.0dip"
+                android:src="@drawable/paint_status1"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_user6"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="1.0"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tv_add_score6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_paint_add_score_less"
+                android:gravity="right"
+                android:paddingRight="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="+5"
+                android:textColor="#ffffffff"
+                android:textSize="9.0sp"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/siv6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_add_score6"
+                android:layout_marginRight="10dp"
+                android:padding="2.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/new_def_head_icon"/>
+
+            <TextView
+                android:id="@+id/tv_score6"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignBottom="@id/siv6"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/new_paint_score_bg"
+                android:gravity="center"
+                android:text="\ 0"
+                android:textColor="#ffffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_name6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/siv6"
+                android:layout_marginRight="8.0dip"
+                android:layout_marginTop="2dp"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="perfect康"
+                android:textColor="#ff666666"
+                android:textSize="9.0dip"/>
+
+            <ImageView
+                android:id="@+id/iv_status6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5.0dip"
+                android:src="@drawable/paint_status1"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50.0dip"
+        android:layout_marginRight="45.0dip"
+        android:layout_marginTop="400.0dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_result1"
+            android:layout_width="0.0dip"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/new_paint_error_bg"
+            android:gravity="center"
+            android:paddingBottom="3.0dip"
+            android:text=""
+            android:textColor="#ffffffff"
+            android:textSize="10.0dip"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_result2"
+            android:layout_width="0.0dip"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:paddingBottom="3.0dip"
+            android:text="√"
+            android:textColor="#ffffffff"
+            android:textSize="10.0dip"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_result3"
+            android:layout_width="0.0dip"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="6.0dip"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:paddingBottom="3.0dip"
+            android:text="√"
+            android:textColor="#ffffffff"
+            android:textSize="10.0dip"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_result4"
+            android:layout_width="0.0dip"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="6.0dip"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:paddingBottom="3.0dip"
+            android:text="√"
+            android:textColor="#ffffffff"
+            android:textSize="10.0dip"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_result5"
+            android:layout_width="0.0dip"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="8.0dip"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:paddingBottom="3.0dip"
+            android:text="√"
+            android:textColor="#ffffffff"
+            android:textSize="10.0dip"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_result6"
+            android:layout_width="0.0dip"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="9.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:paddingBottom="3.0dip"
+            android:text="√"
+            android:textColor="#ffffffff"
+            android:textSize="10.0dip"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_brush"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/pv"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="50.0dip"
+        android:background="@drawable/new_paint_color_plate_head_on_bg"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/pen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/new_paint_color_plate_head_on_pen"/>
+
+        <ImageView
+            android:layout_width="5.0dip"
+            android:layout_height="5.0dip"
+            android:layout_alignBottom="@id/pen"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginLeft="12.0dip"
+            android:src="@drawable/paint_color_rb1"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_color_plate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/pv"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15.0dip"
+        android:background="@drawable/new_paint_color_plate_body_bg"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingBottom="5.0dip"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="55.0dip"
+                android:layout_height="20.0dip"
+                android:background="@drawable/paint_color_btn_off"
+                android:drawableLeft="@drawable/new_paint_clean"
+                android:paddingLeft="8.0dip"
+                android:paddingRight="3.0dip"
+                android:text="清空"
+                android:textColor="#ffffffff"
+                android:textSize="12.0dip"/>
+
+            <RadioGroup
+                android:id="@+id/rg_width"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:layout_weight="3.0"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_width1"
+                    android:layout_width="45.0dip"
+                    android:layout_height="20.0dip"
+                    android:background="@drawable/paint_width_bg"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableLeft="@drawable/paint_width_drawable_samll"
+                    android:paddingLeft="12.0dip"
+                    android:text="  细"
+                    android:textColor="@drawable/paint_width_text"
+                    android:textSize="12.0dip"/>
+
+                <RadioButton
+                    android:id="@+id/rb_width2"
+                    android:layout_width="45.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_marginLeft="10.0dip"
+                    android:background="@drawable/paint_width_bg"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/paint_width_drawable_medium"
+                    android:paddingLeft="10.0dip"
+                    android:text="  中"
+                    android:textColor="@drawable/paint_width_text"
+                    android:textSize="12.0dip"/>
+
+                <RadioButton
+                    android:id="@+id/rb_width3"
+                    android:layout_width="45.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_marginLeft="10.0dip"
+                    android:background="@drawable/paint_width_bg"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/paint_width_drawable_large"
+                    android:paddingLeft="8.0dip"
+                    android:text="  粗"
+                    android:textColor="@drawable/paint_width_text"
+                    android:textSize="12.0dip"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/paint_colors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10.0dip"
+            android:layout_marginTop="5.0dip"
+            android:orientation="horizontal"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_color_plate_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ll_color_plate"
+        android:layout_alignTop="@id/ll_color_plate"
+        android:layout_marginBottom="7.0dip"
+        android:layout_marginTop="7.0dip"
+        android:layout_toLeftOf="@id/ll_color_plate"
+        android:scaleType="fitXY"
+        android:src="@drawable/new_paint_color_plate_head_off_bg"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_egg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <include layout="@layout/paint_game_over"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_user"
+        android:background="#fff1f0cf"/>
+</RelativeLayout>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_game_over"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#aa000000"
+                android:paddingTop="50.0dip"
+                android:visibility="gone">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30.0dip"
+        android:background="@drawable/new_paint_win_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100.0dip"
+            android:text="游戏结束"
+            android:textColor="#ffffffff"
+            android:textSize="25.0dip"/>
+
+        <ImageView
+            android:id="@+id/iv_myicon"
+            android:layout_width="60.0dip"
+            android:layout_height="60.0dip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150.0dip"
+            android:src="@drawable/new_def_head_icon"/>
+
+        <Button
+            android:id="@+id/more_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/liar_game_more_button"
+            android:text="再来一局"
+            android:textColor="@color/white"
+            android:textSize="16.0sp"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26.0dip"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/winner1"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/winner2"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/winner3"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/winner4"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/winner5"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/winner6"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35.0dip"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/loser1"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/loser2"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/loser3"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/loser4"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/loser5"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/loser6"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:padding="3.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_def_head_icon"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

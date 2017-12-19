@@ -9,14 +9,30 @@ import java.util.List;
  */
 
 public class Player {
+    private String pid;
     private String name;
     private String avatar;
     private boolean state;
+
+    public Player(String pid, String name, String avatar, boolean state) {
+        this.pid = pid;
+        this.name = name;
+        this.avatar = avatar;
+        this.state = state;
+    }
 
     public Player(String name, String avatar, boolean state) {
         this.name = name;
         this.avatar = avatar;
         this.state = state;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public String getName() {
