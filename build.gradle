@@ -29,7 +29,8 @@ task clean(type: Delete) {
 ext {
     version_support_appcompat = '26.1.0'
 
-    version_rxjava = '2.1.7'
+    version_rxjava = '2.1.8'
+    version_rxandroid = '2.0.1'
     version_okhttp3 = '3.9.1'
     version_retrofit = '2.3.0'
     version_glide = '4.4.0'

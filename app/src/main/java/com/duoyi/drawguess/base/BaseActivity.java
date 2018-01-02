@@ -14,10 +14,12 @@ import com.duoyi.drawguess.util.DLog;
  */
 
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+    
+    private String activityName = getClass().getSimpleName();
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DLog.d("activity onCreate");
+        DLog.d(activityName + " onCreate");
     }
 
     @Override public void setContentView(int layoutResID) {
@@ -79,27 +81,27 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override protected void onStart() {
         super.onStart();
-        DLog.d("activity onStart");
+        DLog.d(activityName + " onStart");
     }
 
     @Override protected void onResume() {
         super.onResume();
-        DLog.d("activity onResume");
+        DLog.d(activityName + " onResume");
     }
 
     @Override protected void onPause() {
         super.onPause();
-        DLog.d("activity onPause");
+        DLog.d(activityName + " onPause");
     }
 
     @Override protected void onStop() {
         super.onStop();
-        DLog.d("activity onStop");
+        DLog.d(activityName + " onStop");
     }
 
     @Override protected void onDestroy() {
         super.onDestroy();
-        DLog.d("activity onDestroy");
+        DLog.d(activityName + " onDestroy");
     }
 
     /**

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.duoyi.drawguess.R;
+import com.duoyi.drawguess.api.AppSocket;
 import com.duoyi.drawguess.base.BaseActivity;
 
 /**
@@ -14,6 +15,7 @@ public class GameLobbyActivity extends BaseActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_lobby);
+        AppSocket.get().init();
     }
 
     @Override protected void initView() {
@@ -24,13 +26,22 @@ public class GameLobbyActivity extends BaseActivity {
     @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_lobby_dg_open:
-                playDG();
+                requestRoom();
                 break;
         }
+    }
+
+    private void requestRoom() {
+        AppSocket.get().startDG();
     }
 
     private void playDG() {
         Intent intent = new Intent(this, DrawGuessActivity.class);
         startActivity(intent);
+    }
+
+    @Override protected void onDestroy() {
+        AppSocket.get().close();
+        super.onDestroy();
     }
 }
