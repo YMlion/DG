@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import com.duoyi.drawguess.R;
 import com.duoyi.drawguess.api.AppSocket;
+import com.duoyi.drawguess.api.SocketResult;
 import com.duoyi.drawguess.base.BaseActivity;
+import com.duoyi.drawguess.util.AppObserver;
+import com.duoyi.drawguess.util.DLog;
+import com.duoyi.drawguess.util.RxUtil;
 
 /**
  * 游戏大厅界面
@@ -26,9 +30,24 @@ public class GameLobbyActivity extends BaseActivity {
     @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_lobby_dg_open:
+                handleResult();
                 requestRoom();
                 break;
         }
+    }
+
+    private void handleResult() {
+        AppSocket.get()
+                .getObservable()
+                .compose(RxUtil.applyScheduler())
+                .subscribe(addDisposable(new AppObserver<SocketResult>() {
+                    @Override public void onNext(SocketResult socketResult) {
+                        DLog.d("the result is " + socketResult.result);
+                        if (socketResult.result.equals("12121")) {
+                            playDG();
+                        }
+                    }
+                }));
     }
 
     private void requestRoom() {

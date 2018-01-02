@@ -1,17 +1,13 @@
 package com.duoyi.drawguess.util;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Observer空实现类
  * Created by YMlion on 2018/1/2.
  */
 
-public class AppObserver<T> implements Observer<T> {
-    @Override public void onSubscribe(Disposable d) {
-
-    }
+public class AppObserver<T> extends DisposableObserver<T> {
 
     @Override public void onNext(T t) {
 

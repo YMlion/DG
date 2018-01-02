@@ -6,6 +6,13 @@ package com.duoyi.drawguess.api;
  */
 
 public class SocketResult<T> {
+
+    public SocketResult(int code, String action, T result) {
+        this.code = code;
+        this.action = action;
+        this.result = result;
+    }
+
     /**
      * 状态码，表明成功失败
      */

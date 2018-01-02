@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import com.duoyi.drawguess.util.DLog;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * activity基类，公共方法及生命周期管理
@@ -16,6 +18,7 @@ import com.duoyi.drawguess.util.DLog;
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     
     private String activityName = getClass().getSimpleName();
+    private CompositeDisposable mCD = new CompositeDisposable();
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +103,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override protected void onDestroy() {
+        mCD.clear();
         super.onDestroy();
         DLog.d(activityName + " onDestroy");
     }
@@ -115,5 +119,12 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             getWindow().setAttributes(lp);
         });
         animator.start();
+    }
+
+    public <T> DisposableObserver<T> addDisposable(DisposableObserver<T> d) {
+        if (d != null) {
+            mCD.add(d);
+        }
+        return d;
     }
 }

@@ -45,6 +45,9 @@ dependencies {
     }
     // gson
     implementation "com.google.code.gson:gson:${rootProject.ext.version_gson}"
+    //leakcanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${rootProject.ext.version_leakcanary}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${rootProject.ext.version_leakcanary}"
     // test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

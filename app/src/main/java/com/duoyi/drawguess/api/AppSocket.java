@@ -3,8 +3,8 @@ package com.duoyi.drawguess.api;
 import android.support.annotation.Nullable;
 import com.duoyi.drawguess.util.AppObserver;
 import com.duoyi.drawguess.util.DLog;
-import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,6 +23,7 @@ public class AppSocket {
     private static AppSocket INSTANCE = new AppSocket();
     private String mUrl;
     private WebSocket mWebSocket;
+    private Observable<SocketResult> mObservable;
 
     private AppSocket() {
     }
@@ -45,15 +46,23 @@ public class AppSocket {
                         DLog.d(mUrl);
                         OkHttpClient client = new OkHttpClient.Builder().build();
                         Request request = new Request.Builder().url(mUrl).build();
-                        client.newWebSocket(request, new AppSocketListener());
+                        AppSocketListener socketListener = new AppSocketListener();
+                        client.newWebSocket(request, socketListener);
+                        mObservable = Observable.create(socketListener::setObservableEmitter);
                     }
                 });
     }
 
     public void close() {
         if (mWebSocket != null) {
-            Completable.fromAction(() -> mWebSocket.close(3000, "exit")).subscribe();
+            mWebSocket.close(3000, "exit");
+            mObservable = null;
+            //Completable.fromAction(() -> mWebSocket.close(3000, "exit")).subscribe();
         }
+    }
+
+    public Observable<SocketResult> getObservable() {
+        return mObservable;
     }
 
     /**
@@ -61,14 +70,13 @@ public class AppSocket {
      */
     public void startDG() {
         if (mWebSocket != null) {
-            Completable.fromAction(() -> {
-                mWebSocket.send("token");
-                mWebSocket.send("start");
-            }).subscribe();
+            mWebSocket.send("token");
+            mWebSocket.send("start");
         }
     }
 
     class AppSocketListener extends WebSocketListener {
+        private ObservableEmitter mEmitter;
         @Override public void onOpen(WebSocket webSocket, Response response) {
             mWebSocket = webSocket;
             DLog.d("client onOpen.");
@@ -76,6 +84,9 @@ public class AppSocket {
 
         @Override public void onMessage(WebSocket webSocket, String text) {
             DLog.d("client onMessage : " + text);
+            if (mEmitter != null) {
+                mEmitter.onNext(new SocketResult<>(1, "", text));
+            }
         }
 
         @Override public void onMessage(WebSocket webSocket, ByteString bytes) {
@@ -93,6 +104,13 @@ public class AppSocket {
         @Override
         public void onFailure(WebSocket webSocket, Throwable t, @Nullable Response response) {
             DLog.d("client onFailure");
+            if (mEmitter != null) {
+                mEmitter.onError(t);
+            }
+        }
+
+        public void setObservableEmitter(ObservableEmitter<SocketResult> emitter) {
+            mEmitter = emitter;
         }
     }
 }
