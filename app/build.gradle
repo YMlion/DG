@@ -48,6 +48,8 @@ dependencies {
     //leakcanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${rootProject.ext.version_leakcanary}"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${rootProject.ext.version_leakcanary}"
+    // event bus
+    implementation "org.greenrobot:eventbus:${rootProject.ext.version_event_bus}"
     // test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

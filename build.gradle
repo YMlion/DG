@@ -36,6 +36,7 @@ ext {
     version_glide = '4.4.0'
     version_gson = '2.8.2'
     version_leakcanary = '1.5.4'
+    version_event_bus = '3.1.1'
 
     targetSdkVersion = 26
     compileSdkVersion = 26

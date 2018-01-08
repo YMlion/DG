@@ -20,11 +20,14 @@ public class AppContext extends Application {
     @Override public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-        LeakCanary.install(this);
         StrictMode.setThreadPolicy(
                 new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
         StrictMode.setVmPolicy(
                 new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().penaltyDeath().build());
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
     }
 
     @Override public void onTerminate() {
