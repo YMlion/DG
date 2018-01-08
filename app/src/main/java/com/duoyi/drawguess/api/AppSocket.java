@@ -11,6 +11,7 @@ import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 import okio.ByteString;
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * web socket
@@ -55,7 +56,8 @@ public class AppSocket {
 
     public void close() {
         if (mWebSocket != null) {
-            mWebSocket.close(3000, "exit");
+            //mWebSocket.close(3000, "exit");
+            mWebSocket.send("exit");
             //mObservable = null;
             //Completable.fromAction(() -> mWebSocket.close(3000, "exit")).subscribe();
         }
@@ -84,6 +86,7 @@ public class AppSocket {
 
         @Override public void onMessage(WebSocket webSocket, String text) {
             DLog.d("client onMessage text : " + text);
+            EventBus.getDefault().post(new SocketResult<>(1, text, "12121"));
             //if (mEmitter != null) {
             //    mEmitter.onNext(new SocketResult<>(1, "", text));
             //}
