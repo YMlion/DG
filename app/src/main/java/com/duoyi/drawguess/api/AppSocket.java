@@ -56,8 +56,8 @@ public class AppSocket {
 
     public void close() {
         if (mWebSocket != null) {
-            //mWebSocket.close(3000, "exit");
-            mWebSocket.send("exit");
+            mWebSocket.send(new SocketRequestData<>("exit", "close the socket").getJson());
+            mWebSocket.close(3000, "exit");
             //mObservable = null;
             //Completable.fromAction(() -> mWebSocket.close(3000, "exit")).subscribe();
         }
@@ -72,8 +72,8 @@ public class AppSocket {
      */
     public void startDG() {
         if (mWebSocket != null) {
-            mWebSocket.send("token");
-            mWebSocket.send("start");
+            mWebSocket.send(new SocketRequestData<>("token", "123456").getJson());
+            mWebSocket.send(new SocketRequestData<>("start", "draw_guess").getJson());
         }
     }
 
@@ -86,7 +86,8 @@ public class AppSocket {
 
         @Override public void onMessage(WebSocket webSocket, String text) {
             DLog.d("client onMessage text : " + text);
-            EventBus.getDefault().post(new SocketResult<>(1, text, "12121"));
+            SocketResult result = SocketResult.get(text);
+            EventBus.getDefault().post(result);
             //if (mEmitter != null) {
             //    mEmitter.onNext(new SocketResult<>(1, "", text));
             //}

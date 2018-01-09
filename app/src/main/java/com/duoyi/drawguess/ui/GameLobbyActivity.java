@@ -44,20 +44,6 @@ public class GameLobbyActivity extends BaseActivity {
         }
     }
 
-    private void handleResult() {
-        /*AppSocket.get()
-                .getObservable()
-                .compose(RxUtil.applyScheduler())
-                .subscribe(addDisposable(new AppObserver<SocketResult>() {
-                    @Override public void onNext(SocketResult socketResult) {
-                        DLog.d("the result is " + socketResult.result);
-                        if (socketResult.result.equals("12121")) {
-                            playDG();
-                        }
-                    }
-                }));*/
-    }
-
     private void requestRoom() {
         AppSocket.get().startDG();
     }
