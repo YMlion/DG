@@ -72,8 +72,15 @@ public class AppSocket {
      */
     public void startDG() {
         if (mWebSocket != null) {
-            mWebSocket.send(new SocketRequestData<>("token", "123456").getJson());
+            mWebSocket.send(
+                    new SocketRequestData<>("token", System.currentTimeMillis() + "").getJson());
             mWebSocket.send(new SocketRequestData<>("start", "draw_guess").getJson());
+        }
+    }
+
+    public void quitDG() {
+        if (mWebSocket != null) {
+            mWebSocket.send(new SocketRequestData<>("quit_game", "draw_guess").getJson());
         }
     }
 

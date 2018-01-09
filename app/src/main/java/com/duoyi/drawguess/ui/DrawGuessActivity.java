@@ -14,13 +14,19 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.duoyi.drawguess.R;
+import com.duoyi.drawguess.api.AppSocket;
+import com.duoyi.drawguess.api.SocketResult;
 import com.duoyi.drawguess.base.BaseActivity;
 import com.duoyi.drawguess.base.RvBaseAdapter;
 import com.duoyi.drawguess.base.ViewHolder;
 import com.duoyi.drawguess.model.Player;
 import java.util.ArrayList;
 import java.util.List;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * 你画我猜主界面
@@ -36,6 +42,7 @@ public class DrawGuessActivity extends BaseActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw_guess);
+        EventBus.getDefault().register(this);
     }
 
     @Override protected void initView() {
@@ -113,5 +120,22 @@ public class DrawGuessActivity extends BaseActivity {
 
         setDialog.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
         setBackgroundAlpha(1, 0.6f, 250);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN) public void onMsgRecieved(SocketResult result) {
+        switch (result.action) {
+            case "user_in":
+                Toast.makeText(this, "新用户加入", Toast.LENGTH_SHORT).show();
+                break;
+            case "user_quit":
+                Toast.makeText(this, "有用户退出", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    @Override protected void onDestroy() {
+        AppSocket.get().quitDG();
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }
