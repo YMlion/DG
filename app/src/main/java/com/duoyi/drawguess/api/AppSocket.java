@@ -80,6 +80,12 @@ public class AppSocket {
         }
     }
 
+    public void readyDG() {
+        if (mWebSocket != null) {
+            mWebSocket.send(new SocketRequestData<>("ready", "draw_guess").getJson());
+        }
+    }
+
     class AppSocketListener extends WebSocketListener {
         //private ObservableEmitter mEmitter;
         @Override public void onOpen(WebSocket webSocket, Response response) {

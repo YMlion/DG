@@ -83,7 +83,9 @@ public class DrawGuessActivity extends BaseActivity {
                 break;
             case R.id.tv_exit:
                 finish();
+                break;
             case R.id.btn_ready:
+                AppSocket.get().readyDG();
                 readyBtn.setText("已准备");
                 readyBtn.setEnabled(false);
                 break;
@@ -129,6 +131,9 @@ public class DrawGuessActivity extends BaseActivity {
                 break;
             case "user_quit":
                 Toast.makeText(this, "有用户退出", Toast.LENGTH_SHORT).show();
+                break;
+            case "user_ready":
+                Toast.makeText(this, "有用户准备", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
