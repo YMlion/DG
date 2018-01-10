@@ -63,10 +63,6 @@ public class AppSocket {
         }
     }
 
-    //public Observable<SocketResult> getObservable() {
-    //    return mObservable;
-    //}
-
     /**
      * 开始你画我猜游戏
      */

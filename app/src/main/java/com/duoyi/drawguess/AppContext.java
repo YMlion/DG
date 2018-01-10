@@ -3,6 +3,7 @@ package com.duoyi.drawguess;
 import android.app.Application;
 import android.os.StrictMode;
 import com.squareup.leakcanary.LeakCanary;
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * App base
@@ -28,6 +29,7 @@ public class AppContext extends Application {
             return;
         }
         LeakCanary.install(this);
+        EventBus.builder().addIndex(new MyEventBusIndex()).installDefaultEventBus();
     }
 
     @Override public void onTerminate() {
