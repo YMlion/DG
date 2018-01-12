@@ -9,13 +9,13 @@ import java.util.List;
  */
 
 public class Player {
-    private String pid;
+    private String id;
     private String name;
     private String avatar;
     private boolean state;
 
-    public Player(String pid, String name, String avatar, boolean state) {
-        this.pid = pid;
+    public Player(String id, String name, String avatar, boolean state) {
+        this.id = id;
         this.name = name;
         this.avatar = avatar;
         this.state = state;
@@ -27,12 +27,12 @@ public class Player {
         this.state = state;
     }
 
-    public String getPid() {
-        return pid;
+    public String getId() {
+        return id;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -59,14 +59,18 @@ public class Player {
         this.state = state;
     }
 
+    @Override public boolean equals(Object obj) {
+        if (obj instanceof Player) {
+            return ((Player) obj).id.equals(id);
+        }
+        return super.equals(obj);
+    }
+
     public static List<Player> mockList(int num) {
         List<Player> list = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             Player p = new Player("张三" + i,
                     "http://img5.imgtn.bdimg.com/it/u=1082195034,4139527125&fm=27&gp=0.jpg", false);
-            if (i % 2 == 0) {
-                p.setReady(true);
-            }
             list.add(p);
         }
         return list;

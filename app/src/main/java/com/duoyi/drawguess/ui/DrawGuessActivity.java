@@ -38,6 +38,7 @@ public class DrawGuessActivity extends BaseActivity {
     private Button readyBtn;
 
     private PopupWindow setDialog;
+    private RvBaseAdapter<Player> adapter;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,16 +57,18 @@ public class DrawGuessActivity extends BaseActivity {
 
     private void initRv() {
         sittingPlayers = new ArrayList<>();
-        sittingPlayers.addAll(Player.mockList(6));
+        sittingPlayers.addAll(Player.mockList(2));
         seatRv.setLayoutManager(new GridLayoutManager(this, 3));
-        seatRv.setAdapter(
+        adapter =
                 new RvBaseAdapter<Player>(sittingPlayers, R.layout.item_room_prepare_seat) {
                     @Override public void onBind(ViewHolder holder, Player model) {
                         holder.setText(R.id.tv_user_name, model.getName())
                                 .setVisible(R.id.iv_user_status, model.isReady())
                                 .showNetImage(R.id.iv_user_avatar, model.getAvatar());
                     }
-                });
+                };
+        seatRv.setAdapter(
+                adapter);
     }
 
     @Override protected void initData() {
@@ -128,12 +131,21 @@ public class DrawGuessActivity extends BaseActivity {
         switch (result.action) {
             case "user_in":
                 Toast.makeText(this, "新用户加入", Toast.LENGTH_SHORT).show();
+                sittingPlayers.addAll(Player.mockList(1));
+                adapter.notifyItemInserted(sittingPlayers.size());
                 break;
             case "user_quit":
                 Toast.makeText(this, "有用户退出", Toast.LENGTH_SHORT).show();
+                int removeIndex = sittingPlayers.size() - 1;
+                sittingPlayers.remove(removeIndex);
+                adapter.notifyItemRemoved(removeIndex);
+                adapter.notifyItemRangeChanged(removeIndex, adapter.getItemCount() - 1);
                 break;
             case "user_ready":
                 Toast.makeText(this, "有用户准备", Toast.LENGTH_SHORT).show();
+                int readyIndex = sittingPlayers.size() - 1;
+                sittingPlayers.get(readyIndex).setReady(true);
+                adapter.notifyItemChanged(readyIndex);
                 break;
         }
     }

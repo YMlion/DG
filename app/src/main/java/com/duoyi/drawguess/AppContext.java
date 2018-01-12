@@ -2,6 +2,8 @@ package com.duoyi.drawguess;
 
 import android.app.Application;
 import android.os.StrictMode;
+import com.duoyi.drawguess.model.Player;
+import com.duoyi.drawguess.model.User;
 import com.squareup.leakcanary.LeakCanary;
 import org.greenrobot.eventbus.EventBus;
 
@@ -13,6 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 public class AppContext extends Application {
 
     private static AppContext INSTANCE = null;
+    private User mUser;
 
     public static AppContext getInstance() {
         return INSTANCE;
@@ -30,6 +33,15 @@ public class AppContext extends Application {
         }
         LeakCanary.install(this);
         EventBus.builder().addIndex(new MyEventBusIndex()).installDefaultEventBus();
+    }
+
+    public User getUser() {
+        // TODO: 2018/1/2 查找数据库
+        return mUser;
+    }
+
+    public void setUser(User user) {
+        mUser = user;
     }
 
     @Override public void onTerminate() {

@@ -2,6 +2,8 @@ package com.duoyi.drawguess.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.text.TextUtils;
 import android.view.View;
 import com.duoyi.drawguess.R;
 import com.duoyi.drawguess.api.AppSocket;
@@ -16,6 +18,8 @@ import org.greenrobot.eventbus.ThreadMode;
  */
 public class GameLobbyActivity extends BaseActivity {
 
+    private TextInputLayout mTokenTil;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_lobby);
@@ -25,14 +29,19 @@ public class GameLobbyActivity extends BaseActivity {
 
     @Override protected void initView() {
         super.initView();
+        mTokenTil = (TextInputLayout) fv(R.id.textInputLayout);
         setOnClickListener(R.id.btn_lobby_dg_open);
     }
 
     @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_lobby_dg_open:
-                //handleResult();
-                requestRoom();
+                String token = mTokenTil.getEditText().getText().toString();
+                if (TextUtils.isEmpty(token)) {
+                    mTokenTil.setError("input the token!!!");
+                    return;
+                }
+                AppSocket.get().verifyToken(token);
                 break;
         }
     }
@@ -41,11 +50,9 @@ public class GameLobbyActivity extends BaseActivity {
     public void onMsgRecieved(SocketResult result){
         if (result.action.equals("start")) {
             playDG();
-        }
-    }
+        } else if (result.action.equals("user_info")) {
 
-    private void requestRoom() {
-        AppSocket.get().startDG();
+        }
     }
 
     private void playDG() {

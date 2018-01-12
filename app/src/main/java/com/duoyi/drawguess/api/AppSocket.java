@@ -1,6 +1,7 @@
 package com.duoyi.drawguess.api;
 
 import android.support.annotation.Nullable;
+import com.duoyi.drawguess.model.User;
 import com.duoyi.drawguess.util.AppObserver;
 import com.duoyi.drawguess.util.DLog;
 import io.reactivex.Observable;
@@ -63,6 +64,12 @@ public class AppSocket {
         }
     }
 
+    public void verifyToken(String token) {
+        if (mWebSocket != null) {
+            mWebSocket.send(new SocketRequestData<>("token", token).getJson());
+        }
+    }
+
     /**
      * 开始你画我猜游戏
      */
@@ -95,7 +102,15 @@ public class AppSocket {
 
         @Override public void onMessage(WebSocket webSocket, String text) {
             DLog.d("client onMessage text : " + text);
-            SocketResult result = SocketResult.get(text);
+            Result result = Result.get(text);
+            switch (result.action) {
+                case "user_info":
+                    result = SocketResult.<User>get(text);
+                    break;
+                default:
+                    result = SocketResult.get(text);
+                    break;
+            }
             EventBus.getDefault().post(result);
             //if (mEmitter != null) {
             //    mEmitter.onNext(new SocketResult<>(1, "", text));
