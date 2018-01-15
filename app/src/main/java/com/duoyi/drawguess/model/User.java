@@ -5,13 +5,13 @@ package com.duoyi.drawguess.model;
  */
 
 public class User {
-    private String token;
-    private String id;
-    private String name;
-    private String avatar;
-    private boolean state;
-    private String gameName;
-    private String roomId;
+    public String token;
+    public String id;
+    public String name;
+    public String avatar;
+    public boolean state;
+    public String gameName;
+    public String roomId;
 
     public User(String token, String id, String name, String avatar, boolean state, String gameName,
             String roomId) {
@@ -78,5 +78,9 @@ public class User {
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
+    }
+
+    public Player getPlayer() {
+        return new Player(id, name, avatar, state);
     }
 }

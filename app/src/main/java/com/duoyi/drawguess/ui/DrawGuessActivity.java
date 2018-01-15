@@ -1,5 +1,6 @@
 package com.duoyi.drawguess.ui;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.duoyi.drawguess.AppContext;
 import com.duoyi.drawguess.R;
 import com.duoyi.drawguess.api.AppSocket;
 import com.duoyi.drawguess.api.SocketResult;
@@ -39,6 +41,7 @@ public class DrawGuessActivity extends BaseActivity {
 
     private PopupWindow setDialog;
     private RvBaseAdapter<Player> adapter;
+    private int roomId;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +58,13 @@ public class DrawGuessActivity extends BaseActivity {
         readyBtn = (Button) setOnClickListener(R.id.btn_ready);
     }
 
-    private void initRv() {
+    private void initRv(List<Player> players) {
         sittingPlayers = new ArrayList<>();
-        sittingPlayers.addAll(Player.mockList(2));
+        if (players != null && !players.isEmpty()) {
+            sittingPlayers.addAll(players);
+        }
+        sittingPlayers.add(AppContext.getInstance().getUser().getPlayer());
+        //sittingPlayers.addAll(Player.mockList(2));
         seatRv.setLayoutManager(new GridLayoutManager(this, 3));
         adapter =
                 new RvBaseAdapter<Player>(sittingPlayers, R.layout.item_room_prepare_seat) {
@@ -73,7 +80,14 @@ public class DrawGuessActivity extends BaseActivity {
 
     @Override protected void initData() {
         super.initData();
-        initRv();
+        Intent intent = getIntent();
+        roomId = intent.getIntExtra("roomId", 0);
+        if (roomId == 0) {
+            finish();
+            return;
+        }
+        List<Player> players = intent.getParcelableArrayListExtra("players");
+        initRv(players);
     }
 
     @Override public void onClick(View v) {
@@ -89,6 +103,15 @@ public class DrawGuessActivity extends BaseActivity {
                 break;
             case R.id.btn_ready:
                 AppSocket.get().readyDG();
+                int i = 0;
+                for (Player player : sittingPlayers) {
+                    if (player.getId().equals(AppContext.getInstance().getUser().getId())) {
+                        player.setReady(true);
+                        adapter.notifyItemChanged(i);
+                        break;
+                    }
+                    i++;
+                }
                 readyBtn.setText("已准备");
                 readyBtn.setEnabled(false);
                 break;
@@ -131,21 +154,31 @@ public class DrawGuessActivity extends BaseActivity {
         switch (result.action) {
             case "user_in":
                 Toast.makeText(this, "新用户加入", Toast.LENGTH_SHORT).show();
-                sittingPlayers.addAll(Player.mockList(1));
+                sittingPlayers.add((Player) result.data);
                 adapter.notifyItemInserted(sittingPlayers.size());
                 break;
             case "user_quit":
                 Toast.makeText(this, "有用户退出", Toast.LENGTH_SHORT).show();
-                int removeIndex = sittingPlayers.size() - 1;
-                sittingPlayers.remove(removeIndex);
-                adapter.notifyItemRemoved(removeIndex);
-                adapter.notifyItemRangeChanged(removeIndex, adapter.getItemCount() - 1);
+                String quitId = (String) result.data;
+                for (int i = 0; i < sittingPlayers.size(); i++) {
+                    if (sittingPlayers.get(i).getId().equals(quitId)) {
+                        sittingPlayers.remove(i);
+                        adapter.notifyItemRemoved(i);
+                        adapter.notifyItemRangeChanged(i, adapter.getItemCount() - 1);
+                        break;
+                    }
+                }
                 break;
             case "user_ready":
                 Toast.makeText(this, "有用户准备", Toast.LENGTH_SHORT).show();
-                int readyIndex = sittingPlayers.size() - 1;
-                sittingPlayers.get(readyIndex).setReady(true);
-                adapter.notifyItemChanged(readyIndex);
+                String readyId = (String) result.data;
+                for (int i = 0; i < sittingPlayers.size(); i++) {
+                    if (sittingPlayers.get(i).getId().equals(readyId)) {
+                        sittingPlayers.get(i).setReady(true);
+                        adapter.notifyItemChanged(i);
+                        break;
+                    }
+                }
                 break;
         }
     }

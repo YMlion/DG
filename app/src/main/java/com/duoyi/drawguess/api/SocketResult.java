@@ -1,6 +1,7 @@
 package com.duoyi.drawguess.api;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.$Gson$Types;
 import java.lang.reflect.Type;
 
 /**
@@ -10,18 +11,19 @@ import java.lang.reflect.Type;
 
 public class SocketResult<T> extends Result {
 
-    public SocketResult(int code, String action, T result) {
+    public SocketResult(int code, String action, T data) {
         super(code, action);
-        this.result = result;
+        this.data = data;
     }
 
     /**
      * 响应结果
      */
-    public T result;
+    public T data;
 
-    public static SocketResult get(String text) {
+    public static SocketResult getObj(String text, Class clazz) {
         Gson gson = new Gson();
-        return gson.fromJson(text, Type);
+        Type type = $Gson$Types.newParameterizedTypeWithOwner(null, SocketResult.class, clazz);
+        return gson.fromJson(text, type);
     }
 }

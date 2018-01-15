@@ -1,5 +1,7 @@
 package com.duoyi.drawguess.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  * Created by YMlion on 2017/12/15.
  */
 
-public class Player {
+public class Player implements Parcelable {
     private String id;
     private String name;
     private String avatar;
@@ -75,4 +77,32 @@ public class Player {
         }
         return list;
     }
+
+    @Override public int describeContents() {
+        return 0;
+    }
+
+    @Override public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.avatar);
+        dest.writeByte(this.state ? (byte) 1 : (byte) 0);
+    }
+
+    protected Player(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.avatar = in.readString();
+        this.state = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {
+        @Override public Player createFromParcel(Parcel source) {
+            return new Player(source);
+        }
+
+        @Override public Player[] newArray(int size) {
+            return new Player[size];
+        }
+    };
 }

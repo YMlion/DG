@@ -5,10 +5,16 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.view.View;
+import com.duoyi.drawguess.AppContext;
 import com.duoyi.drawguess.R;
 import com.duoyi.drawguess.api.AppSocket;
 import com.duoyi.drawguess.api.SocketResult;
 import com.duoyi.drawguess.base.BaseActivity;
+import com.duoyi.drawguess.model.Player;
+import com.duoyi.drawguess.model.RoomInfo;
+import com.duoyi.drawguess.model.User;
+import java.util.ArrayList;
+import java.util.List;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -48,15 +54,19 @@ public class GameLobbyActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMsgRecieved(SocketResult result){
-        if (result.action.equals("start")) {
-            playDG();
+        if (result.action.equals("start_room")) {
+            RoomInfo info = (RoomInfo) result.data;
+            playDG(info.room.id, info.players);
         } else if (result.action.equals("user_info")) {
-
+            AppContext.getInstance().setUser((User) result.data);
+            AppSocket.get().startDG();
         }
     }
 
-    private void playDG() {
+    private void playDG(int id, List<Player> players) {
         Intent intent = new Intent(this, DrawGuessActivity.class);
+        intent.putExtra("roomId", id);
+        intent.putParcelableArrayListExtra("players", (ArrayList<Player>) players);
         startActivity(intent);
     }
 

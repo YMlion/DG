@@ -1,6 +1,8 @@
 package com.duoyi.drawguess.api;
 
 import android.support.annotation.Nullable;
+import com.duoyi.drawguess.model.Player;
+import com.duoyi.drawguess.model.RoomInfo;
 import com.duoyi.drawguess.model.User;
 import com.duoyi.drawguess.util.AppObserver;
 import com.duoyi.drawguess.util.DLog;
@@ -75,8 +77,6 @@ public class AppSocket {
      */
     public void startDG() {
         if (mWebSocket != null) {
-            mWebSocket.send(
-                    new SocketRequestData<>("token", System.currentTimeMillis() + "").getJson());
             mWebSocket.send(new SocketRequestData<>("start", "draw_guess").getJson());
         }
     }
@@ -105,10 +105,16 @@ public class AppSocket {
             Result result = Result.get(text);
             switch (result.action) {
                 case "user_info":
-                    result = SocketResult.<User>get(text);
+                    result = SocketResult.getObj(text, User.class);
+                    break;
+                case "start_room":
+                    result = SocketResult.getObj(text, RoomInfo.class);
+                    break;
+                case "user_in":
+                    result = SocketResult.getObj(text, Player.class);
                     break;
                 default:
-                    result = SocketResult.get(text);
+                    result = SocketResult.getObj(text, String.class);
                     break;
             }
             EventBus.getDefault().post(result);
