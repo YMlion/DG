@@ -69,6 +69,8 @@ public class AppSocket {
     public void verifyToken(String token) {
         if (mWebSocket != null) {
             mWebSocket.send(new SocketRequestData<>("token", token).getJson());
+        } else {
+            init();
         }
     }
 
