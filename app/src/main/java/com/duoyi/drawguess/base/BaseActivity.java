@@ -62,6 +62,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     protected View setOnClickListener(int resId) {
         View v = fv(resId);
         v.setOnClickListener(this);
+        v.setVisibility(View.VISIBLE);
         return v;
     }
 

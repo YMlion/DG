@@ -42,6 +42,7 @@ public class DrawGuessActivity extends BaseActivity {
     private PopupWindow setDialog;
     private RvBaseAdapter<Player> adapter;
     private int roomId;
+    private TextView roomNameTv;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +55,9 @@ public class DrawGuessActivity extends BaseActivity {
         seatRv = (RecyclerView) fv(R.id.rv_dg_seat);
         setOnClickListener(R.id.tv_invite);
         setOnClickListener(R.id.tv_exit);
-        setOnClickListener(R.id.tv_dg_settings);
+        setOnClickListener(R.id.tv_set);
         readyBtn = (Button) setOnClickListener(R.id.btn_ready);
+        roomNameTv = (TextView) fv(R.id.tv_title);
     }
 
     private void initRv(List<Player> players) {
@@ -86,13 +88,14 @@ public class DrawGuessActivity extends BaseActivity {
             finish();
             return;
         }
+        roomNameTv.setText(roomId + "房间");
         List<Player> players = intent.getParcelableArrayListExtra("players");
         initRv(players);
     }
 
     @Override public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_dg_settings:
+            case R.id.tv_set:
                 // dialog or popup window
                 showSetDialog();
                 break;
@@ -179,6 +182,9 @@ public class DrawGuessActivity extends BaseActivity {
                         break;
                     }
                 }
+                break;
+            case "start_game":
+                // TODO: 2018/1/05 切换界面
                 break;
         }
     }

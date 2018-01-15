@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00323333">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_dg_seat"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"/>
+
+    <View
+        android:id="@+id/wwv"
+        android:layout_width="100.0dp"
+        android:layout_height="100.0dp"
+        android:layout_below="@id/rv_dg_seat"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/btn_ready"
+        android:layout_width="60.0dp"
+        android:layout_height="60.0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ready_up"
+        android:text="@string/button_ready"
+        android:textColor="@color/white"
+        android:textSize="16.0sp"
+        android:layout_below="@id/rv_dg_seat"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/tv_invite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="@string/invite"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_toLeftOf="@id/wwv"
+        android:layout_below="@id/btn_ready"/>
+
+    <TextView
+        android:id="@+id/tv_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="@string/exit"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_toRightOf="@id/wwv"
+        android:layout_below="@id/btn_ready"/>
+
+</RelativeLayout>

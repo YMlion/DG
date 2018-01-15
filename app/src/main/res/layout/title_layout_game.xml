@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
-                android:layout_height="50.0dip"
+                android:layout_height="50.0dp"
                 android:background="#00323333">
 
     <TextView
-        android:id="@id/title"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5.0dip"
+        android:layout_marginBottom="5.0dp"
         android:gravity="center"
         android:text="title"
         android:textColor="@color/white"
@@ -22,14 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5.0dip"
+        android:layout_marginTop="5.0dp"
         android:text="你画我猜 vip"
         android:textColor="@color/white"
-        android:textSize="11.0dip"/>
+        android:textSize="11.0dp"/>
 
     <ImageView
-        android:id="@+id/left_button"
-        android:layout_width="55.0dip"
+        android:id="@+id/iv_left_button"
+        android:layout_width="55.0dp"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:scaleType="center"
@@ -39,39 +39,39 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15.0dip"
-        android:layout_marginTop="5.0dip"
+        android:layout_marginLeft="15.0dp"
+        android:layout_marginTop="5.0dp"
         android:text="时间"
         android:textColor="#ffffffff"
-        android:textSize="11.0dip"/>
+        android:textSize="11.0dp"/>
 
     <TextView
         android:id="@+id/tv_title_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="1.0dip"
-        android:layout_marginLeft="15.0dip"
+        android:layout_marginBottom="1.0dp"
+        android:layout_marginLeft="15.0dp"
         android:text="——"
         android:textColor="#ffffffff"
-        android:textSize="24.0dip"/>
+        android:textSize="24.0dp"/>
 
     <ImageView
-        android:id="@+id/right_button"
-        android:layout_width="55.0dip"
+        android:id="@+id/tv_right_button"
+        android:layout_width="55.0dp"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
         android:scaleType="center"/>
 
     <TextView
-        android:id="@+id/right_tv"
-        android:layout_width="55.0dip"
+        android:id="@+id/tv_right"
+        android:layout_width="55.0dp"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="5.0dip"
+        android:layout_marginRight="5.0dp"
         android:gravity="center_vertical"
-        android:paddingLeft="5.0dip"
-        android:paddingRight="5.0dip"
+        android:paddingLeft="5.0dp"
+        android:paddingRight="5.0dp"
         android:textColor="@color/blue"
         android:textSize="14.0sp"
         android:visibility="visible"/>
@@ -81,12 +81,12 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10.0dip"
-        android:drawablePadding="5.0dip"
+        android:layout_marginRight="10.0dp"
+        android:drawablePadding="5.0dp"
         android:drawableRight="@drawable/new_set"
         android:gravity="center_vertical"
-        android:paddingLeft="5.0dip"
-        android:paddingRight="5.0dip"
+        android:paddingLeft="5.0dp"
+        android:paddingRight="5.0dp"
         android:text="设置"
         android:textColor="#ffffffff"
         android:textSize="14.0sp"
