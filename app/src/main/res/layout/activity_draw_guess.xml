@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/game_bg_paint"
-    android:orientation="vertical">
+    android:background="@color/game_bg_paint">
 
     <include
         layout="@layout/title_layout_game"
@@ -12,6 +11,23 @@
 
     <include
         layout="@layout/fragment_game_ready"
-        android:id="@+id/fragment_game_ready"/>
+        android:id="@+id/fragment_game_ready"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_layout"/>
 
-</LinearLayout>
+    <include
+        layout="@layout/input_panel_layout"
+        android:id="@+id/input_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/input_panel"
+        android:layout_below="@id/fragment_game_ready"/>
+
+</RelativeLayout>

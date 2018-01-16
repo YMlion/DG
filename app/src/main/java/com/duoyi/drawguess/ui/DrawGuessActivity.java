@@ -40,9 +40,12 @@ public class DrawGuessActivity extends BaseActivity {
     private Button readyBtn;
 
     private PopupWindow setDialog;
-    private RvBaseAdapter<Player> adapter;
+    private RvBaseAdapter<Player> seatAdapter;
     private int roomId;
     private TextView roomNameTv;
+    // 消息列表：法官消息、用户消息和自己发的消息；又分为文本、图片、语音等。
+    private RecyclerView msgRv;
+    private RecyclerView msgAdapter;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +71,7 @@ public class DrawGuessActivity extends BaseActivity {
         sittingPlayers.add(AppContext.getInstance().getUser().getPlayer());
         //sittingPlayers.addAll(Player.mockList(2));
         seatRv.setLayoutManager(new GridLayoutManager(this, 3));
-        adapter =
+        seatAdapter =
                 new RvBaseAdapter<Player>(sittingPlayers, R.layout.item_room_prepare_seat) {
                     @Override public void onBind(ViewHolder holder, Player model) {
                         holder.setText(R.id.tv_user_name, model.getName())
@@ -76,8 +79,7 @@ public class DrawGuessActivity extends BaseActivity {
                                 .showNetImage(R.id.iv_user_avatar, model.getAvatar());
                     }
                 };
-        seatRv.setAdapter(
-                adapter);
+        seatRv.setAdapter(seatAdapter);
     }
 
     @Override protected void initData() {
@@ -110,7 +112,7 @@ public class DrawGuessActivity extends BaseActivity {
                 for (Player player : sittingPlayers) {
                     if (player.getId().equals(AppContext.getInstance().getUser().getId())) {
                         player.setReady(true);
-                        adapter.notifyItemChanged(i);
+                        seatAdapter.notifyItemChanged(i);
                         break;
                     }
                     i++;
@@ -158,7 +160,7 @@ public class DrawGuessActivity extends BaseActivity {
             case "user_in":
                 Toast.makeText(this, "新用户加入", Toast.LENGTH_SHORT).show();
                 sittingPlayers.add((Player) result.data);
-                adapter.notifyItemInserted(sittingPlayers.size());
+                seatAdapter.notifyItemInserted(sittingPlayers.size());
                 break;
             case "user_quit":
                 Toast.makeText(this, "有用户退出", Toast.LENGTH_SHORT).show();
@@ -166,8 +168,8 @@ public class DrawGuessActivity extends BaseActivity {
                 for (int i = 0; i < sittingPlayers.size(); i++) {
                     if (sittingPlayers.get(i).getId().equals(quitId)) {
                         sittingPlayers.remove(i);
-                        adapter.notifyItemRemoved(i);
-                        adapter.notifyItemRangeChanged(i, adapter.getItemCount() - 1);
+                        seatAdapter.notifyItemRemoved(i);
+                        seatAdapter.notifyItemRangeChanged(i, seatAdapter.getItemCount() - 1);
                         break;
                     }
                 }
@@ -178,7 +180,7 @@ public class DrawGuessActivity extends BaseActivity {
                 for (int i = 0; i < sittingPlayers.size(); i++) {
                     if (sittingPlayers.get(i).getId().equals(readyId)) {
                         sittingPlayers.get(i).setReady(true);
-                        adapter.notifyItemChanged(i);
+                        seatAdapter.notifyItemChanged(i);
                         break;
                     }
                 }
