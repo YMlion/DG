@@ -52,8 +52,7 @@ public class GameLobbyActivity extends BaseActivity {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMsgRecieved(SocketResult result){
+    @Subscribe(threadMode = ThreadMode.MAIN) public void onMsgReceived(SocketResult result) {
         if (result.action.equals("start_room")) {
             RoomInfo info = (RoomInfo) result.data;
             playDG(info.room.id, info.players);

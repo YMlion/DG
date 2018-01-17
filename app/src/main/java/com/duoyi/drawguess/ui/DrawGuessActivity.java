@@ -155,7 +155,7 @@ public class DrawGuessActivity extends BaseActivity {
         setBackgroundAlpha(1, 0.6f, 250);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN) public void onMsgRecieved(SocketResult result) {
+    @Subscribe(threadMode = ThreadMode.MAIN) public void onMsgReceived(SocketResult result) {
         switch (result.action) {
             case "user_in":
                 Toast.makeText(this, "新用户加入", Toast.LENGTH_SHORT).show();
