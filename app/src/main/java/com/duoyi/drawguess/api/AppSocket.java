@@ -1,6 +1,7 @@
 package com.duoyi.drawguess.api;
 
 import android.support.annotation.Nullable;
+import com.duoyi.drawguess.model.ChatMsg;
 import com.duoyi.drawguess.model.Player;
 import com.duoyi.drawguess.model.RoomInfo;
 import com.duoyi.drawguess.model.User;
@@ -114,6 +115,9 @@ public class AppSocket {
                     break;
                 case "user_in":
                     result = SocketResult.getObj(text, Player.class);
+                    break;
+                case "chat_msg":
+                    result = SocketResult.getObj(text, ChatMsg.class);
                     break;
                 default:
                     result = SocketResult.getObj(text, String.class);

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@id/time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="2dp"
+        android:textColor="@color/gray2"
+        android:textSize="12sp"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@id/left_region"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time_tv"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:visibility="visible">
+
+        <include
+            layout="@layout/icon_with_position"
+            android:id="@id/user_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="2dp"/>
+
+        <TextView
+            android:id="@id/user_name"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/user_icon"
+            android:gravity="left"
+            android:singleLine="true"
+            android:textColor="#ff666666"
+            android:textSize="10dp"/>
+
+        <RelativeLayout
+            android:id="@+id/sound_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="18dp"
+            android:layout_toRightOf="@id/user_icon"
+            android:background="@drawable/chat_left_bg_selector"
+            android:gravity="center|left"
+            android:minWidth="60dp"
+            android:paddingRight="30dp">
+
+            <ImageView
+                android:id="@id/sound_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@drawable/voice_left_icon"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/sound_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/sound_content"
+            android:layout_marginBottom="7dp"
+            android:layout_toRightOf="@id/sound_content"
+            android:text="aaa"
+            android:textSize="10sp"/>
+
+        <ImageView
+            android:id="@+id/sound_msg_state"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_alignTop="@id/sound_content"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/sound_content"
+            android:src="@drawable/reddot"/>
+    </RelativeLayout>
+</RelativeLayout>

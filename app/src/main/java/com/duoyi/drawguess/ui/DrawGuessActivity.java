@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,7 +23,9 @@ import com.duoyi.drawguess.api.AppSocket;
 import com.duoyi.drawguess.api.SocketResult;
 import com.duoyi.drawguess.base.BaseActivity;
 import com.duoyi.drawguess.base.RvBaseAdapter;
+import com.duoyi.drawguess.base.RvMultiBaseAdapter;
 import com.duoyi.drawguess.base.ViewHolder;
+import com.duoyi.drawguess.model.ChatMsg;
 import com.duoyi.drawguess.model.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,8 @@ public class DrawGuessActivity extends BaseActivity {
     private TextView roomNameTv;
     // 消息列表：法官消息、用户消息和自己发的消息；又分为文本、图片、语音等。
     private RecyclerView msgRv;
-    private RecyclerView msgAdapter;
+    private RvMultiBaseAdapter<ChatMsg> msgAdapter;
+    private List<ChatMsg> mChatMsgList;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,25 +65,7 @@ public class DrawGuessActivity extends BaseActivity {
         setOnClickListener(R.id.tv_set);
         readyBtn = (Button) setOnClickListener(R.id.btn_ready);
         roomNameTv = (TextView) fv(R.id.tv_title);
-    }
-
-    private void initRv(List<Player> players) {
-        sittingPlayers = new ArrayList<>();
-        if (players != null && !players.isEmpty()) {
-            sittingPlayers.addAll(players);
-        }
-        sittingPlayers.add(AppContext.getInstance().getUser().getPlayer());
-        //sittingPlayers.addAll(Player.mockList(2));
-        seatRv.setLayoutManager(new GridLayoutManager(this, 3));
-        seatAdapter =
-                new RvBaseAdapter<Player>(sittingPlayers, R.layout.item_room_prepare_seat) {
-                    @Override public void onBind(ViewHolder holder, Player model) {
-                        holder.setText(R.id.tv_user_name, model.getName())
-                                .setVisible(R.id.iv_user_status, model.isReady())
-                                .showNetImage(R.id.iv_user_avatar, model.getAvatar());
-                    }
-                };
-        seatRv.setAdapter(seatAdapter);
+        msgRv = (RecyclerView) fv(R.id.rv_msg);
     }
 
     @Override protected void initData() {
@@ -93,6 +79,51 @@ public class DrawGuessActivity extends BaseActivity {
         roomNameTv.setText(roomId + "房间");
         List<Player> players = intent.getParcelableArrayListExtra("players");
         initRv(players);
+        initMsgRv();
+    }
+
+    private void initRv(List<Player> players) {
+        sittingPlayers = new ArrayList<>();
+        if (players != null && !players.isEmpty()) {
+            sittingPlayers.addAll(players);
+        }
+        sittingPlayers.add(AppContext.getInstance().getUser().getPlayer());
+        //sittingPlayers.addAll(Player.mockList(2));
+        seatRv.setLayoutManager(new GridLayoutManager(this, 3));
+        seatAdapter = new RvBaseAdapter<Player>(sittingPlayers, R.layout.item_room_prepare_seat) {
+            @Override public void onBind(ViewHolder holder, Player model) {
+                holder.setText(R.id.tv_user_name, model.getName())
+                        .setVisible(R.id.iv_user_status, model.isReady())
+                        .showNetImage(R.id.iv_user_avatar, model.getAvatar());
+            }
+        };
+        seatRv.setAdapter(seatAdapter);
+    }
+
+    private void initMsgRv() {
+        mChatMsgList = new ArrayList<>();
+        String name = AppContext.getInstance().getUser().getName();
+        ChatMsg welcomeMsg =
+                new ChatMsg(ChatMsg.CHAT_TYPE_TEXT, "欢迎" + name, System.currentTimeMillis(), "法官",
+                        "", "0");
+        mChatMsgList.add(welcomeMsg);
+        msgRv.setLayoutManager(new LinearLayoutManager(this));
+        msgAdapter = new RvMultiBaseAdapter<ChatMsg>(mChatMsgList, R.layout.item_chat_text,
+                R.layout.item_chat_image, R.layout.item_chat_voice, R.layout.item_chat_dice) {
+            @Override public void onBind(ViewHolder holder, ChatMsg model, int viewType) {
+                switch (viewType) {
+                    case 0:
+                        holder.setText(R.id.tv_user_name, model.getUserName() + ": ")
+                                .setText(R.id.tv_chat_content, model.getText());
+                        break;
+                }
+            }
+
+            @Override public int getItemViewType(int position) {
+                return mDatas.get(position).getMsgViewType();
+            }
+        };
+        msgRv.setAdapter(msgAdapter);
     }
 
     @Override public void onClick(View v) {
@@ -187,6 +218,12 @@ public class DrawGuessActivity extends BaseActivity {
                 break;
             case "start_game":
                 // TODO: 2018/1/05 切换界面
+                break;
+            case "chat_msg":
+                // TODO: 2018/1/12 消息
+                mChatMsgList.add((ChatMsg) result.data);
+                msgAdapter.notifyItemInserted(mChatMsgList.size());
+                msgRv.smoothScrollToPosition(msgAdapter.getItemCount() - 1);
                 break;
         }
     }
