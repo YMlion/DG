@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by YMlion on 2018/1/26.
+ * Created by YMlion on 2018/1/12.
  */
 
 public class ChatMsg implements Parcelable {
