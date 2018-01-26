@@ -96,6 +96,12 @@ public class AppSocket {
         }
     }
 
+    public void sendChatMsg(String msg) {
+        if (mWebSocket != null) {
+            mWebSocket.send(new SocketRequestData<>("msg_text", msg).getJson());
+        }
+    }
+
     class AppSocketListener extends WebSocketListener {
         //private ObservableEmitter mEmitter;
         @Override public void onOpen(WebSocket webSocket, Response response) {

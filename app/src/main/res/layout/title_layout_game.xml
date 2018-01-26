@@ -74,7 +74,7 @@
         android:paddingRight="5.0dp"
         android:textColor="@color/blue"
         android:textSize="14.0sp"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/tv_set"

@@ -62,7 +62,20 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     protected View setOnClickListener(int resId) {
         View v = fv(resId);
         v.setOnClickListener(this);
-        v.setVisibility(View.VISIBLE);
+        return v;
+    }
+
+    /**
+     * 设置View点击事件
+     *
+     * @param resId view id
+     * @param visible 是否可见
+     * @return the view
+     */
+    protected View setOnClickListener(int resId, boolean visible) {
+        View v = fv(resId);
+        v.setOnClickListener(this);
+        v.setVisibility(visible ? View.VISIBLE : View.GONE);
         return v;
     }
 

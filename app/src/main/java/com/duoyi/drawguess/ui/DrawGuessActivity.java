@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -50,6 +55,12 @@ public class DrawGuessActivity extends BaseActivity {
     private RecyclerView msgRv;
     private RvMultiBaseAdapter<ChatMsg> msgAdapter;
     private List<ChatMsg> mChatMsgList;
+    // 聊天相关
+    private ImageButton changeInputIb;
+    private EditText inputEt;
+    private Button sendBtn;
+    private View openPlusBtn;
+    private View voiceLayout;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +73,34 @@ public class DrawGuessActivity extends BaseActivity {
         seatRv = (RecyclerView) fv(R.id.rv_dg_seat);
         setOnClickListener(R.id.tv_invite);
         setOnClickListener(R.id.tv_exit);
-        setOnClickListener(R.id.tv_set);
+        setOnClickListener(R.id.tv_set, true);
         readyBtn = (Button) setOnClickListener(R.id.btn_ready);
         roomNameTv = (TextView) fv(R.id.tv_title);
         msgRv = (RecyclerView) fv(R.id.rv_msg);
+        changeInputIb = (ImageButton) setOnClickListener(R.id.ib_change_input_mode);
+        changeInputIb.setImageLevel(1);
+        inputEt = (EditText) fv(R.id.et_edit_chat);
+        sendBtn = (Button) setOnClickListener(R.id.btn_chat_send);
+        openPlusBtn = setOnClickListener(R.id.iv_open_plugins);
+        inputEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (TextUtils.isEmpty(s.toString().trim())) {
+                    openPlusBtn.setVisibility(View.VISIBLE);
+                    sendBtn.setVisibility(View.GONE);
+                } else {
+                    openPlusBtn.setVisibility(View.GONE);
+                    sendBtn.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override public void afterTextChanged(Editable s) {
+            }
+        });
+        voiceLayout = fv(R.id.ll_record_btn);
     }
 
     @Override protected void initData() {
@@ -150,6 +185,21 @@ public class DrawGuessActivity extends BaseActivity {
                 }
                 readyBtn.setText("已准备");
                 readyBtn.setEnabled(false);
+                break;
+            case R.id.ib_change_input_mode:
+                int level = 1 - changeInputIb.getDrawable().getLevel();
+                changeInputIb.setImageLevel(level);
+                if (level == 0) {
+                    inputEt.setVisibility(View.INVISIBLE);
+                    voiceLayout.setVisibility(View.VISIBLE);
+                } else {
+                    inputEt.setVisibility(View.VISIBLE);
+                    voiceLayout.setVisibility(View.INVISIBLE);
+                }
+                break;
+            case R.id.btn_chat_send:
+                AppSocket.get().sendChatMsg(inputEt.getText().toString());
+                inputEt.setText("");
                 break;
         }
     }
