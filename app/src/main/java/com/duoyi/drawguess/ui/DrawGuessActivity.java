@@ -31,9 +31,12 @@ import com.duoyi.drawguess.base.RvBaseAdapter;
 import com.duoyi.drawguess.base.RvMultiBaseAdapter;
 import com.duoyi.drawguess.base.ViewHolder;
 import com.duoyi.drawguess.model.ChatMsg;
+import com.duoyi.drawguess.model.GameResult;
 import com.duoyi.drawguess.model.Player;
+import io.reactivex.Observable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -275,7 +278,39 @@ public class DrawGuessActivity extends BaseActivity {
                 msgAdapter.notifyItemInserted(mChatMsgList.size());
                 msgRv.smoothScrollToPosition(msgAdapter.getItemCount() - 1);
                 break;
+            case "game_result":
+                final GameResult gameResult = (GameResult) result.data;
+                final PopupWindow window = showGameResult(gameResult);
+                // 3s后跳转惩罚
+                Observable.timer(3, TimeUnit.SECONDS).subscribe(aLong -> {
+                    window.dismiss();
+                    Intent intent = new Intent(DrawGuessActivity.this, PunishActivity.class);
+                    ArrayList<CharSequence> failures = new ArrayList<>();
+                    for (String id : gameResult.failures) {
+                        for (Player player : sittingPlayers) {
+                            if (player.getId().equals(id)) {
+                                failures.add(player.getName());
+                            }
+                        }
+                    }
+                    intent.putCharSequenceArrayListExtra("failures", failures);
+                    startActivityForResult(intent, 0x1);
+                });
+                break;
         }
+    }
+
+    private PopupWindow showGameResult(GameResult gameResult) {
+        PopupWindow resultWindow = new PopupWindow(-2, -2);
+        View contentView = LayoutInflater.from(this)
+                .inflate(R.layout.paint_game_over, (ViewGroup) getWindow().getDecorView(), false);
+        resultWindow.setContentView(contentView);
+        resultWindow.setBackgroundDrawable(new BitmapDrawable());
+        resultWindow.setFocusable(true);
+        // TODO: 2018/1/12 设置头像
+
+        resultWindow.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        return resultWindow;
     }
 
     @Override protected void onDestroy() {
