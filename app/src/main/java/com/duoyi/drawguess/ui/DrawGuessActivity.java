@@ -17,9 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.duoyi.drawguess.AppContext;
@@ -213,20 +211,7 @@ public class DrawGuessActivity extends BaseActivity {
             View contentView = LayoutInflater.from(this)
                     .inflate(R.layout.dialog_set, (ViewGroup) getWindow().getDecorView(), false);
             // TODO: 2017/12/19 view初始化
-            LinearLayout quitlayout = contentView.findViewById(R.id.quit_layout);
-            TextView btnquit = contentView.findViewById(R.id.btn_quit);
-            LinearLayout followroom = contentView.findViewById(R.id.follow_room);
-            TextView followtext = contentView.findViewById(R.id.follow_text);
-            LinearLayout viproominfo = contentView.findViewById(R.id.vip_room_info);
-            RelativeLayout rlrule = contentView.findViewById(R.id.rl_rule);
-            LinearLayout soundlayout = contentView.findViewById(R.id.sound_layout);
-            TextView soundtext = contentView.findViewById(R.id.sound_text);
-            RelativeLayout rlmusic = contentView.findViewById(R.id.rl_music);
-            TextView musicindicator = contentView.findViewById(R.id.music_indicator);
-            TextView textmusic = contentView.findViewById(R.id.text_music);
-            TextView tvcoin = contentView.findViewById(R.id.tv_coin);
-            TextView tvroom = contentView.findViewById(R.id.tv_room);
-            ImageView ivcancel = contentView.findViewById(R.id.iv_cancel);
+
             setDialog.setContentView(contentView);
             setDialog.setBackgroundDrawable(new BitmapDrawable());
             setDialog.setFocusable(true);
@@ -304,11 +289,12 @@ public class DrawGuessActivity extends BaseActivity {
         PopupWindow resultWindow = new PopupWindow(-2, -2);
         View contentView = LayoutInflater.from(this)
                 .inflate(R.layout.paint_game_over, (ViewGroup) getWindow().getDecorView(), false);
+        // TODO: 2018/1/12 设置头像
+        ImageView myAvatar = contentView.findViewById(R.id.iv_my_avatar);
+
         resultWindow.setContentView(contentView);
         resultWindow.setBackgroundDrawable(new BitmapDrawable());
         resultWindow.setFocusable(true);
-        // TODO: 2018/1/12 设置头像
-
         resultWindow.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
         return resultWindow;
     }
