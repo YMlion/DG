@@ -7,4 +7,5 @@ package com.duoyi.drawguess.model;
 public class Room {
     public int id;
     public String game;
+    public boolean started;
 }

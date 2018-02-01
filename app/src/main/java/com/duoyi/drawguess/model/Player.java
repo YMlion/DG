@@ -2,8 +2,6 @@ package com.duoyi.drawguess.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 玩家基本信息
@@ -66,16 +64,6 @@ public class Player implements Parcelable {
             return ((Player) obj).id.equals(id);
         }
         return super.equals(obj);
-    }
-
-    public static List<Player> mockList(int num) {
-        List<Player> list = new ArrayList<>();
-        for (int i = 0; i < num; i++) {
-            Player p = new Player("张三" + i,
-                    "http://img5.imgtn.bdimg.com/it/u=1082195034,4139527125&fm=27&gp=0.jpg", false);
-            list.add(p);
-        }
-        return list;
     }
 
     @Override public int describeContents() {

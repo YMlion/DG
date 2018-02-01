@@ -9,9 +9,8 @@
         layout="@layout/title_layout_game"
         android:id="@+id/title_layout"/>
 
-    <include
-        layout="@layout/fragment_game_ready"
-        android:id="@+id/fragment_game_ready"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_layout"/>
@@ -28,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/input_panel"
-        android:layout_below="@id/fragment_game_ready"
+        android:layout_below="@id/fragment_container"
         android:background="@color/comment_content_background"/>
 
 </RelativeLayout>

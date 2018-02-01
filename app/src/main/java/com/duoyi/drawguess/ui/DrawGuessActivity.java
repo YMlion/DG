@@ -3,7 +3,9 @@ package com.duoyi.drawguess.ui;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -25,7 +27,6 @@ import com.duoyi.drawguess.R;
 import com.duoyi.drawguess.api.AppSocket;
 import com.duoyi.drawguess.api.SocketResult;
 import com.duoyi.drawguess.base.BaseActivity;
-import com.duoyi.drawguess.base.RvBaseAdapter;
 import com.duoyi.drawguess.base.RvMultiBaseAdapter;
 import com.duoyi.drawguess.base.ViewHolder;
 import com.duoyi.drawguess.model.ChatMsg;
@@ -44,12 +45,13 @@ import org.greenrobot.eventbus.ThreadMode;
  */
 public class DrawGuessActivity extends BaseActivity {
 
-    private RecyclerView seatRv;
-    private List<Player> sittingPlayers;
-    private Button readyBtn;
+    private ArrayList<Player> sittingPlayers;
+
+    private Fragment[] mFragments;
+    private FragmentManager mFm;
+    private int mIndex = 0;
 
     private PopupWindow setDialog;
-    private RvBaseAdapter<Player> seatAdapter;
     private int roomId;
     private TextView roomNameTv;
     // 消息列表：法官消息、用户消息和自己发的消息；又分为文本、图片、语音等。
@@ -70,12 +72,9 @@ public class DrawGuessActivity extends BaseActivity {
     }
 
     @Override protected void initView() {
+        mFm = getSupportFragmentManager();
         super.initView();
-        seatRv = (RecyclerView) fv(R.id.rv_dg_seat);
-        setOnClickListener(R.id.tv_invite);
-        setOnClickListener(R.id.tv_exit);
         setOnClickListener(R.id.tv_set, true);
-        readyBtn = (Button) setOnClickListener(R.id.btn_ready);
         roomNameTv = (TextView) fv(R.id.tv_title);
         msgRv = (RecyclerView) fv(R.id.rv_msg);
         changeInputIb = (ImageButton) setOnClickListener(R.id.ib_change_input_mode);
@@ -113,27 +112,40 @@ public class DrawGuessActivity extends BaseActivity {
             return;
         }
         roomNameTv.setText(roomId + "房间");
-        List<Player> players = intent.getParcelableArrayListExtra("players");
-        initRv(players);
-        initMsgRv();
-    }
-
-    private void initRv(List<Player> players) {
+        boolean started = intent.getBooleanExtra("started", false);
+        ArrayList<Player> players = intent.getParcelableArrayListExtra("players");
         sittingPlayers = new ArrayList<>();
         if (players != null && !players.isEmpty()) {
             sittingPlayers.addAll(players);
         }
-        sittingPlayers.add(AppContext.getInstance().getUser().getPlayer());
-        //sittingPlayers.addAll(Player.mockList(2));
-        seatRv.setLayoutManager(new GridLayoutManager(this, 3));
-        seatAdapter = new RvBaseAdapter<Player>(sittingPlayers, R.layout.item_room_prepare_seat) {
-            @Override public void onBind(ViewHolder holder, Player model) {
-                holder.setText(R.id.tv_user_name, model.getName())
-                        .setVisible(R.id.iv_user_status, model.isReady())
-                        .showNetImage(R.id.iv_user_avatar, model.getAvatar());
+        if (!started) {
+            sittingPlayers.add(AppContext.getInstance().getUser().getPlayer());
+        }
+        setFragment(started ? 1 : 0);
+        initMsgRv();
+    }
+
+    private void setFragment(int index) {
+        FragmentTransaction ft = mFm.beginTransaction();
+        if (mFragments == null) {
+            mFragments = new Fragment[2];
+        }
+        if (mFragments[index] == null) {
+            mFragments[index] = index == 0 ? PrepareFragment.newInstance(sittingPlayers)
+                    : PaintingFragment.newInstance(sittingPlayers);
+        }
+        for (Fragment f : mFragments) {
+            if (f != null && f.isVisible()) {
+                ft.hide(f);
             }
-        };
-        seatRv.setAdapter(seatAdapter);
+        }
+        if (mFragments[index].isAdded()) {
+            ft.show(mFragments[index]);
+        } else {
+            ft.add(R.id.fragment_container, mFragments[index]);
+        }
+        ft.commitAllowingStateLoss();
+        mIndex = index;
     }
 
     private void initMsgRv() {
@@ -167,25 +179,6 @@ public class DrawGuessActivity extends BaseActivity {
             case R.id.tv_set:
                 // dialog or popup window
                 showSetDialog();
-                break;
-            case R.id.tv_invite:
-                break;
-            case R.id.tv_exit:
-                finish();
-                break;
-            case R.id.btn_ready:
-                AppSocket.get().readyDG();
-                int i = 0;
-                for (Player player : sittingPlayers) {
-                    if (player.getId().equals(AppContext.getInstance().getUser().getId())) {
-                        player.setReady(true);
-                        seatAdapter.notifyItemChanged(i);
-                        break;
-                    }
-                    i++;
-                }
-                readyBtn.setText("已准备");
-                readyBtn.setEnabled(false);
                 break;
             case R.id.ib_change_input_mode:
                 int level = 1 - changeInputIb.getDrawable().getLevel();
@@ -229,7 +222,9 @@ public class DrawGuessActivity extends BaseActivity {
             case "user_in":
                 Toast.makeText(this, "新用户加入", Toast.LENGTH_SHORT).show();
                 sittingPlayers.add((Player) result.data);
-                seatAdapter.notifyItemInserted(sittingPlayers.size());
+                if (mIndex == 0) {
+                    ((PrepareFragment) mFragments[0]).addPlayer((Player) result.data);
+                }
                 break;
             case "user_quit":
                 Toast.makeText(this, "有用户退出", Toast.LENGTH_SHORT).show();
@@ -237,8 +232,11 @@ public class DrawGuessActivity extends BaseActivity {
                 for (int i = 0; i < sittingPlayers.size(); i++) {
                     if (sittingPlayers.get(i).getId().equals(quitId)) {
                         sittingPlayers.remove(i);
-                        seatAdapter.notifyItemRemoved(i);
-                        seatAdapter.notifyItemRangeChanged(i, seatAdapter.getItemCount() - 1);
+                        if (mIndex == 0) {
+                            ((PrepareFragment) mFragments[0]).removePlayer(i);
+                        } else {
+                            ((PaintingFragment) mFragments[0]).removePlayer(i);
+                        }
                         break;
                     }
                 }
@@ -249,13 +247,16 @@ public class DrawGuessActivity extends BaseActivity {
                 for (int i = 0; i < sittingPlayers.size(); i++) {
                     if (sittingPlayers.get(i).getId().equals(readyId)) {
                         sittingPlayers.get(i).setReady(true);
-                        seatAdapter.notifyItemChanged(i);
+                        if (mIndex == 0) {
+                            ((PrepareFragment) mFragments[0]).setPlayerReady(i);
+                        }
                         break;
                     }
                 }
                 break;
             case "start_game":
                 // TODO: 2018/1/05 切换界面
+                setFragment(1);
                 break;
             case "chat_msg":
                 // TODO: 2018/1/12 消息

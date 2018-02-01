@@ -11,6 +11,7 @@ import com.duoyi.drawguess.api.AppSocket;
 import com.duoyi.drawguess.api.SocketResult;
 import com.duoyi.drawguess.base.BaseActivity;
 import com.duoyi.drawguess.model.Player;
+import com.duoyi.drawguess.model.Room;
 import com.duoyi.drawguess.model.RoomInfo;
 import com.duoyi.drawguess.model.User;
 import java.util.ArrayList;
@@ -55,16 +56,17 @@ public class GameLobbyActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN) public void onMsgReceived(SocketResult result) {
         if (result.action.equals("start_room")) {
             RoomInfo info = (RoomInfo) result.data;
-            playDG(info.room.id, info.players);
+            playDG(info.room, info.players);
         } else if (result.action.equals("user_info")) {
             AppContext.getInstance().setUser((User) result.data);
             AppSocket.get().startDG();
         }
     }
 
-    private void playDG(int id, List<Player> players) {
+    private void playDG(Room room, List<Player> players) {
         Intent intent = new Intent(this, DrawGuessActivity.class);
-        intent.putExtra("roomId", id);
+        intent.putExtra("roomId", room.id);
+        intent.putExtra("started", room.started);
         intent.putParcelableArrayListExtra("players", (ArrayList<Player>) players);
         startActivity(intent);
     }
